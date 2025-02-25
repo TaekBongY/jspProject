@@ -2,21 +2,30 @@ package com.kh.member.model.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
-	private int USER_NO;
-	private String USER_ID;
-	private String USER_PWD;
-	private String USER_NAME;
-	private String PHONE;
-	private String EMAIL;
-	private String ADDRESS;
-	private String INTEREST;
-	private Date ENROLL_DATE;
-	private Date MODIFY_DATE;
-	private String STATUS;
+	   private int userNo;
+	    private String userId;
+	    private String userPwd;
+	    private String userName;
+	    private String phone;
+	    private String email;
+	    private String address;
+	    private String interest;
+	    private Date enrollDate;
+	    private Date modifyDate;
+	    private String status;
 	
-	public Member() {
-		super();
-	}
+	
 	
 }

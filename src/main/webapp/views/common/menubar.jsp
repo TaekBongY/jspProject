@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -48,8 +49,18 @@
 </head>
 
     <body>
+    	<c:if test="${not empty alertMsg}">
+    	
+    		<script>
+    			alert("${alertMsg}")
+    		</script>
+    		<c:remove var="alertMsg"/>
+    	</c:if>
+    
         <h1 align="center">Welcome KH World</h1>
         <div class="login-area">
+        <c:choose>
+        <c:when test="${empty sessionScope.loginUser}">
         <!--로그인 전-->
         <form action="${pageContext.request.contextPath}/login.me" method="POST">
             <table>
@@ -59,7 +70,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="text" name="userPwd" required></td>
+                    <td><input type="password" name="userPwd" required></td>
                 </tr>
                 <tr>
                     <th colspan="2">
@@ -68,7 +79,18 @@
                     </th>
                 </tr>
             </table>
-        </form>
+            </form>
+            </c:when>
+            <c:otherwise>
+            	<div>
+            		<b>${loginUser.userName}님</b> 방문을 환영합니다.<br><br>
+            		<div>
+            			<a>마이페이지</a>
+            			<a href="${pageContext.request.contextPath}/logout.me">로그아웃</a>
+            		</div>
+            	</div>
+            </c:otherwise>
+        </c:choose>
     </div>
     <br clear="both">
     <div class="nav-area">
