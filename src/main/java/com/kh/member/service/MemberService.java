@@ -10,18 +10,38 @@ import com.kh.member.model.vo.Member;
 public class MemberService {
 	public Member loginMember(String userId, String userPwd) {
 		Connection conn = getConnection();
-		System.out.println("확인용 : M.S.1");
 		Member m = new MemberDao().loginMember(conn,userId,userPwd);
-		System.out.println("확인용 : M.S.2");
-		
-		if (m != null) {
-            System.out.println(m);
-        } else {
-            System.out.println("No member found.");
-        }
 		
 		close(conn);
 		return m;
 		
+	}
+
+	public int insertMember(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().insertMember(conn,m);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().updateMember(conn,m);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
 	}
 }

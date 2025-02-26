@@ -75,17 +75,28 @@
                 <tr>
                     <th colspan="2">
                         <input type="submit" value="로그인">
-                        <input type="button" value="회원가입">
+                        <input type="button" value="회원가입" onclick="enrollPage();">
                     </th>
                 </tr>
             </table>
             </form>
+            
+            <script>
+            	function enrollPage(){
+            		//location.href="${pageContext.request.contextPath}/views/member/memberEnrollForm.jsp";
+            		//웹 애플리케이션의 디랙토리구조가 url에 노출되면 보안에 취약해진다.
+            		
+            		location.href="${pageContext.request.contextPath}/enrollForm.me";
+            		//단순한 페이지 요청도 Servlet을 거쳐갈 것(즉, url에는 서블리맵핑값만 나타나도록)
+            	}
+            </script>
+            
             </c:when>
             <c:otherwise>
             	<div>
             		<b>${loginUser.userName}님</b> 방문을 환영합니다.<br><br>
             		<div>
-            			<a>마이페이지</a>
+            			<a href="${pageContext.request.contextPath}/myPage.me">마이페이지</a>
             			<a href="${pageContext.request.contextPath}/logout.me">로그아웃</a>
             		</div>
             	</div>

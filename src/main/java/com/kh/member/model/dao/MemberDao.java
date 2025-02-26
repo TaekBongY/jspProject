@@ -15,9 +15,7 @@ public class MemberDao {
 	
 	
 	public MemberDao() {
-		System.out.println("확인 : DAO IN");
 		String filePath = MemberDao.class.getResource("/DB/sql/member-mapper.xml").getPath();
-		System.out.println("확인 : DAO Path");
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));
 		} catch (IOException e) {
@@ -34,7 +32,6 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("loginMember");
-		System.out.println("확인 : DAO SQL"+sql);
 		try {
 			pstmt = conn.prepareStatement(sql); //미완성sql
 			pstmt.setString(1, userId);
@@ -65,5 +62,62 @@ public class MemberDao {
 		}
 		return m;
 		
+	}
+
+
+	public int insertMember(Connection conn, Member m) {
+		//insert -> 처리된 행의 수 -> 반환
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getAddress());
+			pstmt.setString(7, m.getInterest());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int updateMember(Connection conn, Member m) {
+		//insert -> 처리된 행의 수 -> 반환
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserName());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

@@ -29,7 +29,7 @@ public class JDBCTemplate {
 			
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
 			conn.setAutoCommit(false);
-			System.out.println("연결 성공");
+			System.out.println("Connect Sucess");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
