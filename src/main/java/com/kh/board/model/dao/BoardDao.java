@@ -7,7 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+<<<<<<< HEAD
 import com.kh.board.model.vo.Board;
+=======
+import com.kh.board.model.vo.Attachment;
+import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Category;
+>>>>>>> origin/main
 import com.kh.common.vo.PageInfo;
 import static com.kh.common.JDBCTemplate.*;
 
@@ -89,6 +95,91 @@ public class BoardDao {
 		return list;
 	}
 
+<<<<<<< HEAD
+=======
+	public ArrayList<Category> selectCategory(Connection conn) {
+		ArrayList<Category> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCategory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Category(
+						rset.getInt("categoryNo"),
+						rset.getString("categoryName")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int insertBoard(Connection conn, Board b) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		
+		String sql = prop.getProperty("insertBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b.getCategoryNo());
+			pstmt.setString(2, b.getBoardTitle());
+			pstmt.setString(3, b.getBoardContent());
+			pstmt.setInt(4, b.getBoardWriter());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+		
+	}
+
+	public int insertAttachment(Connection conn, Attachment at) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
+>>>>>>> origin/main
 
 	
 	

@@ -24,5 +24,6 @@
 	<%-- com.kh.common.JDBCTemplate.getConnection(); --%>
 
 	<%@ include file="views/common/menubar.jsp" %>
+
 </body>
 </html>

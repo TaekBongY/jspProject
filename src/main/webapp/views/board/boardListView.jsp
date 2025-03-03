@@ -40,7 +40,15 @@
 		<br>
 		<h2 align="center">일반게시판</h2>
 		<br>
+<<<<<<< HEAD
 
+=======
+		<c:if test="${not empty loginUser}">
+		<div align="right" sytle="witdh :870px; margin-bottom:6px;">
+			<a class="btn btn-sm btn-primary" href="'${pageContext.request.contextPath}/enrollForm.bo">글쓰기</a>
+		</div>
+		</c:if>
+>>>>>>> origin/main
 		<table align="center" class="list-area">
 			<!--부트트랩 : <table align="center" class="list-area table">-->
 			<thead>
