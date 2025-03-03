@@ -95,8 +95,6 @@ public class BoardDao {
 		return list;
 	}
 
-<<<<<<< HEAD
-=======
 	public ArrayList<Category> selectCategory(Connection conn) {
 		ArrayList<Category> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -179,7 +177,6 @@ public class BoardDao {
 		return result;
 	}
 
->>>>>>> origin/main
 
 	
 	

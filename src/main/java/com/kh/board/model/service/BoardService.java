@@ -1,6 +1,5 @@
 package com.kh.board.model.service;
 
-<<<<<<< HEAD
 import static com.kh.common.JDBCTemplate.close;
 import static com.kh.common.JDBCTemplate.getConnection;
 =======
@@ -42,8 +41,6 @@ public class BoardService {
 		
 	}
 
-<<<<<<< HEAD
-=======
 	public ArrayList<Category> selectCategory() {
 		Connection conn = getConnection();
 		ArrayList<Category> List = new BoardDao().selectCategory(conn);
@@ -75,5 +72,4 @@ public class BoardService {
 		return result;
 	}
 
->>>>>>> origin/main
 }
